@@ -2,6 +2,7 @@ datasets
 evaluate
 env
 venv
+myvenv
 weights
 logs
 *pyc
