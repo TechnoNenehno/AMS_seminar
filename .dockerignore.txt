@@ -1,4 +1,0 @@
-Teacher_deformations/
-datasets/
-myvenv/
-.git*
