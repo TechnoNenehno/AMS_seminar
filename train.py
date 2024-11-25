@@ -71,7 +71,7 @@ parser.add_argument('--aldk_learning_scheme', action='store_true')
 
 args = parser.parse_args()
 
-os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'#args.gpu
 
 import tensorflow as tf
 import tflearn
