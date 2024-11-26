@@ -19,6 +19,8 @@ import hashlib
 import time
 from timeit import default_timer
 from math import *
+import wandb
+from wandb.keras import WandbMetricsLogger, WandbModelCheckpoint
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-b', '--base_network', type=str, default='LDR',
@@ -317,4 +319,5 @@ def main():
 
 
 if __name__ == '__main__':
+    wandb.init()
     main()
