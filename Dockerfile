@@ -50,7 +50,8 @@ COPY requirements.txt /app/
 
 # Upgrade pip and install Python dependencies
 RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt
+    && pip install --no-cache-dir -r requirements.txt \
+    && pip install --no-cache-dir wandb
 
 # Copy the rest of the application code into the container
 COPY . /app

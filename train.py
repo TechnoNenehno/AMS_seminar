@@ -86,6 +86,8 @@ if args.dataset.find('liver') != -1:
 else:
     from data_util.brain import Dataset
 
+#Setting up wandb
+wandb.login()
 
 def main():
     repoRoot = os.path.dirname(os.path.realpath(__file__))
@@ -315,9 +317,15 @@ def main():
                     except:
                         if steps == args.val_steps:
                             print('Step {}, validation failed!'.format(steps))
+
+            wandb.log({'Epochs': args.epochs,
+                        'Loss': np.mean(loss),
+                        'Learning rates': float(lr),
+                        'Steps': steps,
+                        'Validation metrics': metrics})
     print('Finished.')
 
 
 if __name__ == '__main__':
-    wandb.init()
+    wandb.init(name="AMS_seminar", project="AMS_seminar")
     main()
