@@ -52,6 +52,7 @@ COPY requirements.txt /app/
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt \
     && pip install --no-cache-dir wandb
+    && pip install --no-cache-dir dataclasses
 
 # Copy the rest of the application code into the container
 COPY . /app
