@@ -2,6 +2,8 @@ FROM nvidia/cuda:11.2.2-cudnn8-runtime-ubuntu20.04
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
 
 # Install dependencies
 RUN apt-get update && \
@@ -42,7 +44,7 @@ RUN update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python
 RUN /usr/local/bin/python3.6 -m ensurepip && \
     /usr/local/bin/python3.6 -m pip install --upgrade pip
 
-    # Set the working directory inside the container
+# Set the working directory inside the container
 WORKDIR /app
 
 # Copy requirements.txt into the container
@@ -51,8 +53,9 @@ COPY requirements.txt /app/
 # Upgrade pip and install Python dependencies
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt \
-    && pip install --no-cache-dir wandb
-    && pip install --no-cache-dir dataclasses
+    && pip install --no-cache-dir wandb == 0.15.11 \
+    && pip install --no-cache-dir dataclasses	\
+    && pip install --no-cache-dir click==7.1.0
 
 # Copy the rest of the application code into the container
 COPY . /app

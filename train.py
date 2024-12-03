@@ -321,8 +321,7 @@ def main():
             wandb.log({'Epochs': args.epochs,
                         'Loss': np.mean(loss),
                         'Learning rates': float(lr),
-                        'Steps': steps,
-                        'Validation metrics': metrics})
+                        'Steps': steps})
     print('Finished.')
 
 
