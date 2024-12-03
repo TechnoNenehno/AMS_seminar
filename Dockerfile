@@ -53,7 +53,7 @@ COPY requirements.txt /app/
 # Upgrade pip and install Python dependencies
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt \
-    && pip install --no-cache-dir wandb == 0.15.11 \
+    && pip install --no-cache-dir wandb==0.15.11 \
     && pip install --no-cache-dir dataclasses	\
     && pip install --no-cache-dir click==7.1.0
 
