@@ -87,7 +87,7 @@ else:
     from data_util.brain import Dataset
 
 #Setting up wandb
-wandb.login()
+wandb.login(key = "f1dae00929d32eeaaa2d3611790e349bc163ccbf")
 
 def main():
     repoRoot = os.path.dirname(os.path.realpath(__file__))
