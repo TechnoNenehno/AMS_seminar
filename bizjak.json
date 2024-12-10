@@ -21,15 +21,10 @@
         },
         "2": {
             "combine-val": 1.0
-        },
-        "3": {
-            "combine-test": 1.0
         }
     },
     "subsets" :{
         "combine-train": [
-            //zunanja datotek naj bo images.h5
-            //slike pa extracted in kot volume v folderjih
             "images/ThoraxCBCT_0000_0000",
             "images/ThoraxCBCT_0000_0001",
             "images/ThoraxCBCT_0000_0002",
@@ -74,23 +69,6 @@
             "validates/ThoraxCBCT_0013_0000",
             "validates/ThoraxCBCT_0013_0001",
             "validates/ThoraxCBCT_0013_0002"
-        ],
-        "combine-test": [
-            "ThoraxCBCT_0014_0000",
-            "ThoraxCBCT_0014_0001",
-            "ThoraxCBCT_0014_0002",
-            "ThoraxCBCT_0015_0000",
-            "ThoraxCBCT_0015_0001",
-            "ThoraxCBCT_0015_0002",
-            "ThoraxCBCT_0016_0000",
-            "ThoraxCBCT_0016_0001",
-            "ThoraxCBCT_0016_0002",
-            "ThoraxCBCT_0017_0000",
-            "ThoraxCBCT_0017_0001",
-            "ThoraxCBCT_0017_0002",
-            "ThoraxCBCT_0018_0000",
-            "ThoraxCBCT_0018_0001",
-            "ThoraxCBCT_0018_0002"
         ]
     }
 }
