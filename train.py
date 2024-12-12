@@ -81,13 +81,22 @@ import tflearn
 import network
 from data_util.data import Split
 
+# Import liver.py, brain.py, or bizjak.py based on the dataset argument
 if args.dataset.find('liver') != -1:
     from data_util.liver import Dataset
-else:
+elif args.dataset.find('brain') != -1:
     from data_util.brain import Dataset
+elif args.dataset.find('bizjak') != -1:
+    from data_util.bizjak import Dataset
+else:
+    raise ValueError(f"Unknown dataset: {args.dataset}")
 
 #Setting up wandb
 wandb.login(key = "f1dae00929d32eeaaa2d3611790e349bc163ccbf")
+
+def resize_image(image, size):
+    return tf.image.resize_images(image, size, method=tf.image.ResizeMethod.BILINEAR)
+
 
 def main():
     repoRoot = os.path.dirname(os.path.realpath(__file__))
@@ -160,6 +169,9 @@ def main():
         data_args = eval('dict({})'.format(args.data_args))
         data_args.update(framework.data_args)
         print('data_args', data_args)
+
+        #importing dataset based on the dataset argument(class dataset from liver.py or brain.py)
+        #need to set pairing somewhere here
         dataset = Dataset(args, args.dataset, args.image_size, **data_args,
                     discriminator=args.aldk,
                     pretrained_flow_path=args.pretrained_flow_path)
@@ -172,7 +184,8 @@ def main():
                                                                args.finetune]
             print('train', dataset.schemes[Split.TRAIN])
             print('val', dataset.schemes[Split.VALID])
-        generator = dataset.generator(Split.TRAIN, batch_size=batchSize, loop=True)
+        #defining generator from dataset
+        generator = dataset.generator(subset='train', batch_size=batchSize, loop=True)
 
         if not args.debug:
             if args.finetune is not None:
@@ -306,7 +319,7 @@ def main():
                 if args.debug or steps % args.val_steps == 0:
                     try:
                         val_gen = dataset.generator(
-                            Split.VALID, loop=False, batch_size=batchSize)
+                            subset='valid', loop=False, batch_size=batchSize)
                         metrics = framework.validate(
                             sess, val_gen, summary=True)
                         val_summ = tf.Summary(value=[
@@ -327,4 +340,5 @@ def main():
 
 if __name__ == '__main__':
     wandb.init(name="AMS_seminar", project="AMS_seminar")
+
     main()
