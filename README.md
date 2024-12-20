@@ -45,14 +45,14 @@ Defined in the entry.sh. Adjust as needed but keep in mind weights checkpoints a
 Testing is done with step 5.
 
 ## Example run
-docker build -t seminar_test .      \
+docker build -t seminar_test .      
 
 docker run -it --name treniranje --runtime=nvidia -e NVIDIA_VISIBLE_DEVICES=0 \
 	-v /media/FastDataMama/brunobanani/data/datasets/bizjak:/app/datasets \
 	-v weights_volume:/app/weights \
-	seminar_test      \
+	seminar_test      
 
-docker cp testiranje:/app/outputs/ /home/brunoc/data/deformacije  \
+docker cp testiranje:/app/outputs/ /home/brunoc/data/deformacije  
 
 docker run     --rm     -u $UID:$UID     \
 	-v /home/brunoc/data/deformacije/outputs:/input    \
