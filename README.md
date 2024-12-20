@@ -4,7 +4,11 @@ Light-weight Deformable Registration using Adversarial Learning with Distilling 
 https://github.com/TechnoNenehno/AMS_seminar.git (main branch)
 
 ## Method explanation
+In this document, a new algorithm is presented for training lighter, less computationally demanding neural networks. The algorithm is based on supervised learning, where a "teacher" neural network, trained on large datasets and computationally expensive, transfers its knowledge and key information to an untrained "student" neural network. This approach enables faster learning for the student neural network while reducing the number of parameters. The new learning method doesn't rely on competition between networks, rather the student neural network uses the knowledge transferred from the teacher network as its foundational truth. The teacher neural network provides well-defined image deformations, differing from traditional algorithms that typically optimize nonlinear spatial similarities.
 
+The task of the student network is to create a prediction function F that takes a moving image and a fixed image as input. The goal is to predict a deformation through a cascade framework(recursive cascaded networks) aligning the inputs with convolution and deconvolution. The network also calculates and minimizes a composite loss function which consists of reconstruction loss and discrimination loss. The losses are considered on every cascade and progressivly refined.
+
+The teacher transfers distiled deformations to the student, upon which the student learns. For this part we did not have the time to train the computationaly expensive tacher network on our data nor did the paper describe how to prepare the Teacher deformations dataset. In my opinion this paper was not well suited for the task of this challenge.
 
 ## Results
 aggregated_results:    \
