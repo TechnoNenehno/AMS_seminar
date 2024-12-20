@@ -1,26 +1,28 @@
 # AMS IZZIV - final report
-Bruno Černak
-
-Light-weight Deformable Registration using Adversarial Learning with Distilling Knowledge
-
-https://github.com/TechnoNenehno/AMS_seminar.git
+Bruno Černak      \
+Light-weight Deformable Registration using Adversarial Learning with Distilling Knowledge\
+https://github.com/TechnoNenehno/AMS_seminar.git      \
 Main branch
 
 ## Method explanation
 
 ## Results
- aggregated_results:
-        LogJacDetStd        : 0.00001 +- 0.00000 | 30%: 0.00001 \
-        TRE_kp              : 11.48576 +- 2.94629 | 30%: 12.24409
-        TRE_lm              : 12.32114 +- 4.06665 | 30%: 12.93017
-        DSC                 : 0.25145 +- 0.08298 | 30%: 0.20475
-        HD95                : 49.13264 +- 13.05698 | 30%: 37.89221
-brunoc@zigabpublic:~$ 
-
+ aggregated_results:    \
+        LogJacDetStd        : 0.00001 +- 0.00000 | 30%: 0.00001   \
+        TRE_kp              : 11.48576 +- 2.94629 | 30%: 12.24409 \
+        TRE_lm              : 12.32114 +- 4.06665 | 30%: 12.93017 \
+        DSC                 : 0.25145 +- 0.08298 | 30%: 0.20475   \
+        HD95                : 49.13264 +- 13.05698 | 30%: 37.89221      \
+brunoc@zigabpublic:~$   \
 ## Docker information
 1. Git pull from the provided link above. (Main branch!)
-2. Build docker image. Training parameters can be adjusted in the entry.sh file before building.
-4. Run the built image with: "" 
+2. Build Docker image. Training parameters can be adjusted in the entry.sh file before building.
+4. Run the built image with: 
+docker run -it --name container_name --runtime=nvidia -e NVIDIA_VISIBLE_DEVICES=0 \ \
+	      -v /media/FastDataMama/brunobanani/data/datasets/bizjak:/app/datasets \ \
+	      -v weights_volume:/app/weights \    \
+	      docker_image_name
+
 
 # Light-weight Deformable Registration using Adversarial Learning with Distilling Knowledge
 ### Summary
