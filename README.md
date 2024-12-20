@@ -57,4 +57,6 @@ docker cp testiranje:/app/outputs/ /home/brunoc/data/deformacije
 docker run     --rm     -u $UID:$UID     \      \
 	-v /home/brunoc/data/deformacije/outputs:/input    \  \
  	-v /home/brunoc/data/output:/output/    \ \
- 	evaluation_image_name python evaluation.py -v
+ 	gitlab.lst.fe.uni-lj.si:5050/domenp/deformable-registration \     \
+      python evaluation.py -v
+
