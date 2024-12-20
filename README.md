@@ -1,8 +1,7 @@
 # AMS IZZIV - final report
 Bruno Černak      \
 Light-weight Deformable Registration using Adversarial Learning with Distilling Knowledge\
-https://github.com/TechnoNenehno/AMS_seminar.git      \
-Main branch
+https://github.com/TechnoNenehno/AMS_seminar.git (main branch)
 
 ## Method explanation
 
@@ -24,20 +23,21 @@ docker run -it --name container_name --runtime=nvidia -e NVIDIA_VISIBLE_DEVICES=
 	      -v /media/FastDataMama/brunobanani/data/datasets/bizjak:/app/datasets \ \
 	      -v weights_volume:/app/weights \    \
 	      docker_image_name \
-In the second line we bind the data into the container which is then used by train.py. The third line mounts a weights volume in which weights are stored after finishing training. From the obtained weights our deformations are built for us automatically by eval.py. Lastly our container stops and has deformations ready in the outputs folder. \
+
+In the second line we bind the data into the container which is then used by train.py. The third line mounts a weights volume in which weights are stored after finishing training. From the obtained weights our deformations are built for us automatically by eval.py. Lastly our container stops and has deformations ready in the outputs folder. 
 4. Copy deformations from the container to somewhere on disk with: \
-docker cp container_name:/app/outputs/ /path/to/your/deformations \
-5. Run evaluation with command below. Make sure you add your path to deformations + /outputs. \
+docker cp container_name:/app/outputs/ /path/to/your/deformations 
+5. Run test/evaluation with command below. Make sure you add your path to deformations + /outputs. \
 docker run     --rm     -u $UID:$UID     \      \
 	      -v /path/to/your/deformations/outputs:/input    \     \
  	      -v /path/to/your/output:/output/    \     \
  	      evaluation_image_name python evaluation.py -v   \
 
 ## Data preperation
-Automatically implemented inside train.
+Data is decimated inside the train.py function to shape (128,128,128) before processing.
 
 ## Train Commands
-Defined in the entry.sh. Adjust as needed but keep in mind weights checkpoints are starting to get saved only after 1000 steps.
+Defined in the entry.sh. Adjust as needed but keep in mind weights checkpoints are stored after 1000 steps.
 
 ## Test Commands
 Testing is done with step 5.
