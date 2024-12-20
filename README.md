@@ -24,9 +24,11 @@ docker run -it --name container_name --runtime=nvidia -e NVIDIA_VISIBLE_DEVICES=
 	      -v weights_volume:/app/weights \    \
 	      docker_image_name 
 
-In the second line we bind the data into the container which is then used by train.py. The third line mounts a weights volume in which weights are stored after finishing training. From the obtained weights our deformations are built for us automatically by eval.py. Lastly our container stops and has deformations ready in the outputs folder. 
+In the second line we bind the data into the container which is then used by train.py. The third line mounts a weights volume in which weights are stored after finishing training. From the obtained weights our deformations are built for us automatically by eval.py. Lastly our container stops and has deformations ready in the outputs folder.
+
 4. Copy deformations from the container to somewhere on disk with: \
 docker cp container_name:/app/outputs/ /path/to/your/deformations 
+
 5. Run test/evaluation with command below. Make sure you add your path to deformations + /outputs. \
 docker run     --rm     -u $UID:$UID     \      \
 	      -v /path/to/your/deformations/outputs:/input    \     \
