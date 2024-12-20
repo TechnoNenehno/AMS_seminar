@@ -47,14 +47,14 @@ Testing is done with step 5.
 ## Example run
 docker build -t seminar_test .      
 
-docker run -it --name treniranje --runtime=nvidia -e NVIDIA_VISIBLE_DEVICES=0 \
-	-v /media/FastDataMama/brunobanani/data/datasets/bizjak:/app/datasets \
-	-v weights_volume:/app/weights \
+docker run -it --name treniranje --runtime=nvidia -e NVIDIA_VISIBLE_DEVICES=0 \     \
+	-v /media/FastDataMama/brunobanani/data/datasets/bizjak:/app/datasets \ \
+	-v weights_volume:/app/weights \    \
 	seminar_test      
 
 docker cp testiranje:/app/outputs/ /home/brunoc/data/deformacije  
 
-docker run     --rm     -u $UID:$UID     \
-	-v /home/brunoc/data/deformacije/outputs:/input    \
- 	-v /home/brunoc/data/output:/output/    \
+docker run     --rm     -u $UID:$UID     \      \
+	-v /home/brunoc/data/deformacije/outputs:/input    \  \
+ 	-v /home/brunoc/data/output:/output/    \ \
  	evaluation_image_name python evaluation.py -v
