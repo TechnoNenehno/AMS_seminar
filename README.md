@@ -29,7 +29,7 @@ In the second line we bind the data into the container which is then used by tra
 4. Copy deformations from the container to somewhere on disk with: \
 docker cp container_name:/app/outputs/ /path/to/your/deformations 
 
-5. Run test/evaluation with command below. Make sure you add your path to deformations + /outputs. \
+5. Run test/evaluation with command below. Make sure you add /path/to/your/deformations and paste /outputs. \
 docker run     --rm     -u $UID:$UID     \      \
 	      -v /path/to/your/deformations/outputs:/input    \     \
  	      -v /path/to/your/output:/output/    \     \
@@ -43,3 +43,15 @@ Defined in the entry.sh. Adjust as needed but keep in mind weights checkpoints a
 
 ## Test Commands
 Testing is done with step 5.
+
+## Example run
+docker build -t seminar_test .      \
+docker run -it --name treniranje --runtime=nvidia -e NVIDIA_VISIBLE_DEVICES=0 \
+	-v /media/FastDataMama/brunobanani/data/datasets/bizjak:/app/datasets \
+	-v weights_volume:/app/weights \
+	seminar_test      \
+docker cp testiranje:/app/outputs/ /home/brunoc/data/deformacije  \
+docker run     --rm     -u $UID:$UID     \
+	-v /home/brunoc/data/deformacije/outputs:/input    \
+ 	-v /home/brunoc/data/output:/output/    \
+ 	evaluation_image_name python evaluation.py -v
